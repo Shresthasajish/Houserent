@@ -1,0 +1,9 @@
+node_modules/
+server/public
+.vscode/
+.idea/
+*lock.json
+yarn.lock
+.expo/
+# build
+.env

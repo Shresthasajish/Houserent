@@ -1,0 +1,84 @@
+<!-- navbar starts here -->
+<div class="brand">
+    <p class="navbar-brand"> House <span style="color:#00e8e8;">Rent Service !</span></p>
+    <!-- <span>BLOG ME UP</span> -->
+</div>
+
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse"></div>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <ul class="navbar-nav mr-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/']" routerLinkActive="active">HOME</a>
+                </li>
+
+                <li class="nav-item" *ngIf="isLoggedIn()">
+                    <a class="nav-link" [routerLink]="['/myListing']" routerLinkActive="active">MY
+                        LISTINGS</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/explore']" routerLinkActive="active">EXPLORE</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/favourites']" *ngIf="isLoggedIn()"
+                        routerLinkActive="active">FAVOURITES</a>
+                </li>
+
+            </ul>
+
+
+            <ul class="navbar-nav" *ngIf="isLoggedIn()">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        {{name}} <i class="fa fa-user-circle" aria-hidden="true"></i>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" routerLink="auth/change-password"> Change Password <i class="fa fa-key"
+                                aria-hidden="true"></i></a>
+                        <a class="dropdown-item" (click)="logout()" routerLink="../">Logout <i class="fa fa-user"
+                                aria-hidden="true"></i></a>
+
+                    </div>
+                </li>
+            </ul>
+
+            <!-- <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a *ngIf="isLoggedIn()" (click)="logout()" class="nav-link" routerLink="../admin">LOGOUT <i
+                            class="fa fa-user" aria-hidden="true"></i> </a>
+                </li>
+            </ul> -->
+
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" *ngIf="!isLoggedIn()" routerLink="/auth/login">LOGIN <i class="fa fa-user"
+                            aria-hidden="true"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" *ngIf="!isLoggedIn()" routerLink="/auth/register">REGISTER <i class="fa fa-user"
+                            aria-hidden="true"></i></a>
+                </li>
+            </ul>
+
+
+
+        </div>
+    </div>
+
+
+</nav>
+
+<!-- navbar ends here -->

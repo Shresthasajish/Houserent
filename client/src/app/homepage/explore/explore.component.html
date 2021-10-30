@@ -1,0 +1,75 @@
+<!-- Navbar Header Component -->
+<header>
+    <app-navbar></app-navbar>
+
+</header>
+
+
+
+<main>
+
+    <div class="container1">
+        <form>
+
+            <div class="wrapper">
+                <div class="search-container">
+                    <input type="text" class="search" [(ngModel)]="searchP.address" name="address"
+                        placeholder="Address">
+                    <input type="text" class="date-from" [(ngModel)]="searchP.propertyType" name="propertyType"
+                        placeholder="Property Type">
+                    <input type="text" class="date-to" [(ngModel)]="searchP.numberOfRooms" name="numberOfRooms"
+                        placeholder="Minimum Rooms">
+                    <input type="text" class="date-to" [(ngModel)]="searchP.maximum_budget" name="maximum_budget"
+                        placeholder="Maximum Budget">
+                    <input type="text" class="date-to" [(ngModel)]="searchP.city" name="city" placeholder="City">
+                    <!-- <input type="text" class="date-to" [(ngModel)]="searchP.parking" name="parking"
+                        placeholder="Parking"> -->
+
+                    <select class="date-to" name="parking" [(ngModel)]="searchP.parking">
+                        <option disabled>Parking</option>
+                        <option value="true">Available</option>
+                        <option value="false">Not Available</option>
+                    </select>
+
+                    <button type="submit" class="button" (click)="search()"><i class="fa fa-search"
+                            aria-hidden="true"></i></button>
+                </div>
+            </div>
+
+
+        </form>
+
+    </div>
+
+
+    <div class="container">
+        <div class="row  mt-3">
+
+            <div class="col-lg-4 md-4"
+                *ngFor="let property of allProperties | paginate: { itemsPerPage: 6, currentPage: p };let i=index">
+
+                <div class="card">
+                    <div (click)="open(property._id)">
+                        <h3 class="heading">{{property.property_type}}</h3>
+                        <img class="cardImg" src="{{Url + property.images[0].path}}" />
+                        <p class="address mt-3"><span>Address: </span> {{property.address}}</p>
+                        <p class="address"><span>Name: </span> {{property.contact_person_name}}</p>
+                        <p class="address"><span>Contact: </span> {{property.mobile_number}}</p>
+                        <p class="address"><span>Price: </span> {{property.price}}</p>
+                    </div>
+                    <button class="btn btn-success fav mb-2" *ngIf="isLoggedIn()" (click)="addToFav(property._id)"> Add
+                        to Favourites </button>
+                </div>
+            </div>
+
+        </div>
+        <div class="text-center mt-5">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+
+    </div>
+</main>
+
+<footer>
+    <app-footer></app-footer>
+</footer>

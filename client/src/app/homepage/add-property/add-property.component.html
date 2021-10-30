@@ -1,0 +1,342 @@
+<header>
+    <app-navbar></app-navbar>
+</header>
+
+<main>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 col-md-8 col-lg-8 mx-auto">
+                <div class="card card-signin my-5">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Add a property</h5>
+                        <hr class="my-4">
+
+
+                        <form #propertyForm="ngForm" class="form-signin" novalidate>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label>Owner's Name</label>
+                                    </div>
+                                    <div class="col-md-9">
+
+                                        <input type="text" [(ngModel)]="property.contact_person_name"
+                                            class="form-control" name="contact_person_name"
+                                            #contact_person_name="ngModel" placeholder="Enter Name of Owner" required
+                                            autofocus>
+                                    </div>
+                                </div>
+
+                                <div *ngIf='contact_person_name.invalid && contact_person_name.dirty'
+                                    class="text-danger">
+                                    Required Field**
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label>State</label>
+                                    </div>
+                                    <div class="col-md-9">
+
+                                        <select class="form-control" [(ngModel)]="property.state" name="state"
+                                            #state="ngModel">
+                                            <option disabled selected>Please select State</option>
+                                            <option *ngFor="let state of states" selected value="{{state}}">{{state}}
+                                            </option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label>City</label>
+                                    </div>
+                                    <div class="col-md-9">
+
+                                        <input type="text" [(ngModel)]="property.city" name="city" class="form-control"
+                                            #city="ngModel" placeholder="Enter City" required autofocus>
+                                    </div>
+                                </div>
+
+                                <div *ngIf='city.invalid && city.dirty' class="text-danger">
+                                    Required Field**
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label>Address</label>
+                                    </div>
+                                    <div class="col-md-9">
+
+                                        <input type="text" [(ngModel)]="property.address" name="address"
+                                            class="form-control" #address="ngModel" placeholder="Enter Address" required
+                                            autofocus>
+                                    </div>
+                                </div>
+
+                                <div *ngIf='address.invalid && address.dirty' class="text-danger">
+                                    Required Field**
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label>Email</label>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <input type="email" [(ngModel)]="property.email" name="email"
+                                            class="form-control" #email="ngModel" placeholder="Enter Email" required
+                                            autofocus pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                                    </div>
+                                </div>
+                                <div class="text-danger" *ngIf="email.touched">
+                                    <p *ngIf="email.errors?.required">Required field**</p>
+                                    <p *ngIf="email.errors?.pattern">Not a valid Email**</p>
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label>Phone</label>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <input type="text" [(ngModel)]="property.mobile_number" name="mobile_number"
+                                            class="form-control" #mobile_number="ngModel"
+                                            placeholder="Enter Contact Number" maxlength="10" pattern="^[0-9]{10}$"
+                                            required autofocus>
+                                    </div>
+                                </div>
+
+                                <div class="text-danger" *ngIf="mobile_number.touched">
+                                    <p *ngIf="mobile_number.errors?.required">Required field**</p>
+                                    <p *ngIf="mobile_number.errors?.pattern">Not a valid phone number**</p>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label>Property Type</label>
+                                    </div>
+                                    <div class="col-md-9">
+
+                                        <input type="text" [(ngModel)]="property.property_type" name="property_type"
+                                            class="form-control" #property_type="ngModel"
+                                            placeholder="Enter Property Type" required autofocus>
+                                    </div>
+                                </div>
+
+                                <div *ngIf='property_type.invalid && property_type.dirty' class="text-danger">
+                                    Required Field**
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label>Description</label>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <textarea type="text" [(ngModel)]="property.description" name="description"
+                                            class="form-control" #description="ngModel"
+                                            placeholder="Enter Property Description" required autofocus></textarea>
+                                    </div>
+                                </div>
+
+                                <div *ngIf='description.invalid && description.dirty' class="text-danger">
+                                    Required Field**
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label>Number of rooms</label>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <input type="text" [(ngModel)]="property.numberOfRooms" name="numberOfRooms"
+                                            class="form-control" #numberOfRooms="ngModel"
+                                            placeholder="Enter number of rooms" required autofocus>
+                                    </div>
+                                </div>
+
+                                <div *ngIf='numberOfRooms.invalid && numberOfRooms.dirty' class="text-danger">
+                                    Required Field**
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label>Number of bathrooms</label>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <input type="text" [(ngModel)]="property.numberOfBathrooms"
+                                            name="numberOfBathrooms" class="form-control" #numberOfBathrooms="ngModel"
+                                            placeholder="Enter number of rooms" required autofocus>
+                                    </div>
+                                </div>
+
+                                <div *ngIf='numberOfBathrooms.invalid && numberOfBathrooms.dirty' class="text-danger">
+                                    Required Field**
+                                </div>
+                            </div>
+
+
+
+
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label>Water Supply</label>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <input type="text" [(ngModel)]="property.waterSupply" name="waterSupply"
+                                            class="form-control" #waterSupply="ngModel"
+                                            placeholder="Water Supply Description" required autofocus>
+                                    </div>
+                                </div>
+
+                                <div *ngIf='waterSupply.invalid && waterSupply.dirty' class="text-danger">
+                                    Required Field**
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label>Parking</label>
+                                    </div>
+                                    <div class="col-md-9">
+
+                                        <select class="form-control" [(ngModel)]="property.parking" name="parking"
+                                            #parking="ngModel">
+                                            <option disabled selected>Please select Parking State</option>
+                                            <option value=true>Available</option>
+                                            <option value=false>Not Available</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label>Price</label>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <input type="number" [(ngModel)]="property.price" name="price"
+                                            class="form-control" #price="ngModel" placeholder="Enter Price"
+                                            maxlength="10" required autofocus>
+                                    </div>
+                                </div>
+
+                                <div *ngIf='price.invalid && price.dirty' class="text-danger">
+                                    Required Field**
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label>Select Location</label>
+                                <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false"
+                                    [zoomControl]="false" (mapClick)="mapClicked($event)">
+
+                                    <agm-marker [latitude]="marker.lat" [longitude]="marker.lng">
+
+                                    </agm-marker>
+
+
+                                </agm-map>
+                            </div>
+
+
+
+
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label>Property Images</label>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <ngx-dropzone (change)="onSelect($event)">
+                                            <ngx-dropzone-label>Drag and drop here!</ngx-dropzone-label>
+                                            <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview"
+                                                *ngFor="let f of files" [file]="f">
+                                                <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                                            </ngx-dropzone-image-preview>
+                                        </ngx-dropzone>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+                            <div class="row mt-4">
+                                <div class="col-md-6">
+                                    <button [disabled]="propertyForm.invalid" (click)="submit()"
+                                        class="btn btn-md btn-success btn-block submit text-uppercase"
+                                        type="submit">Add</button>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <button routerLink="/myListing"
+                                        class="btn btn-md btn-danger btn-block cancel text-uppercase"
+                                        type="submit">Cancel</button>
+                                </div>
+
+
+                            </div>
+
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</main>

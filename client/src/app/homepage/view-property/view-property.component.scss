@@ -1,0 +1,33 @@
+span {
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.image {
+    width: 100%;
+}
+.image:hover {
+    transform: scale(2.5);
+}
+
+.heading {
+}
+
+.card {
+    flex-direction: row !important;
+    border: none !important;
+}
+
+
+agm-map {
+    height: 300px;
+  }
+  
+  
+  * {
+    font-family: Lato;
+  }
+  
+  a {
+    color: darkblue;
+  }

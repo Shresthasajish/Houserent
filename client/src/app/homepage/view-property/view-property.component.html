@@ -1,0 +1,73 @@
+<header>
+    <app-navbar></app-navbar>
+</header>
+
+<main>
+    <div class="container">
+        <div>
+            <h3 class="heading text-center p-4">{{property.property_type}} </h3>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-3 card">
+
+                <img class="image m-2" *ngFor="let img of property.images" src="{{Url + img.path}}" />
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <div>
+                <p><span>Price: </span>{{property.price}}</p>
+            </div>
+            <div>
+                <p><span>Contact Person Name: </span>{{property.contact_person_name}}</p>
+            </div>
+            <div>
+                <p><span>Contact: </span>{{property.mobile_number}}</p>
+            </div>
+            <div>
+                <p><span>Email: </span>{{property.email}}</p>
+            </div>
+            <div>
+                <p><span>State: </span>{{property.state}}</p>
+            </div>
+            <div>
+                <p><span>City: </span>{{property.city}}</p>
+            </div>
+            <div>
+                <p><span>Address: </span>{{property.address}}</p>
+            </div>
+            <div>
+                <p><span>Number of Rooms: </span>{{property.numberOfRooms}}</p>
+            </div>
+            <div>
+                <p><span>Number of Bathrooms: </span>{{property.numberOfBathrooms}}</p>
+            </div>
+            <div>
+                <p><span>Water Supply: </span>{{property.waterSupply}}</p>
+            </div>
+            <div>
+                <p><span>Parking: </span>{{property.parking}}</p>
+            </div>
+            <div>
+                <p> <span>Description: </span> {{property.description}}</p>
+            </div>
+            <div><span>property location: </span></div>
+            <div *ngIf="property.lat && property.lng" class="mb-4">
+                <agm-map [latitude]="property.lat" [longitude]="property.lng" [zoom]=8 [disableDefaultUI]="false"
+                    [zoomControl]="false">
+
+                    <agm-marker [latitude]="property.lat" [longitude]="property.lng">
+
+                    </agm-marker>
+
+
+                </agm-map>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<footer>
+    <app-footer></app-footer>
+</footer>

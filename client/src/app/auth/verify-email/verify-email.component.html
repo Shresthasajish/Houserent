@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-12 mx-auto">
+            <div class="card-body">
+
+
+                <h3 class="heading">Verify Account</h3>
+                <form #registerForm="ngForm">
+                    <div class="form-group">
+                        <label>Email address</label>
+                        <input type="email" [(ngModel)]="verify.email" name="email" #email="ngModel"
+                            class="form-control" placeholder="Enter Email Address" required autofocus
+                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+
+                        <div class="danger" *ngIf="email.touched">
+                            <p *ngIf="email.errors?.required">Required field**</p>
+                            <p *ngIf="email.errors?.pattern">Not a valid Email**</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Confirmation Code</label>
+                        <input type="text" [(ngModel)]="verify.code" name="code" #code="ngModel" class="form-control"
+                            placeholder="Enter Confirmation Code" required autofocus>
+                    </div>
+
+                    <a href="#">Resend Code</a>
+
+                    <button [disabled]="registerForm.invalid" class="btn btn-lg btn-success btn-block verify"
+                        type="submit" (click)="verifyFunc()">Verify</button>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
